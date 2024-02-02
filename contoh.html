@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fullscreen Manual Slide with QR Code</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            overflow-x: hidden; /* Agar horizontal scroll tidak muncul */
+        }
+
+        .slideshow-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mySlides {
+            display: none;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide-content {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+            background: rgba(0, 0, 0, 0.8); /* Warna hitam pekat */
+            color: white;
+            text-align: center;
+            z-index: 2; /* Menempatkan slide content di atas slide image */
+        }
+
+        .description {
+            margin-bottom: 10px;
+        }
+
+        .qr-code {
+            max-width: 100px;
+            margin-top: 10px;
+            margin-bottom: 20px; /* Menambahkan margin di bagian bawah QR code */
+        }
+
+        .slide-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1; /* Menempatkan slide image di belakang slide content */
+        }
+
+        /* Style the navigation buttons */
+        .prev, .next {
+            cursor: pointer;
+            position: fixed;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            z-index: 3; /* Menempatkan tombol navigasi di atas slide content */
+        }
+
+        .prev {
+            left: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        /* On hover, add a black background color with a little bit see-through */
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+    </style>
+</head>
+<body>
+
+<div class="slideshow-container">
+    <!-- Slide 1 -->
+    <div class="mySlides">
+        <img class="slide-image" src="slide1.jpg" alt="Slide 1">
+        <div class="slide-content">
+            <p class="description">Deskripsi Slide 1</p>
+            <img class="qr-code" src="slide2.jpg" alt="QR Code Slide 1">
+        </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="mySlides">
+        <img class="slide-image" src="slide2.jpg" alt="Slide 2">
+        <div class="slide-content">
+            <p class="description">Deskripsi Slide 2</p>
+            <img class="qr-code" src="slide3.jpg" alt="QR Code Slide 2">
+        </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="mySlides">
+        <img class="slide-image" src="slide3.jpg" alt="Slide 3">
+        <div class="slide-content">
+            <p class="description">Deskripsi Slide 3</p>
+            <img class="qr-code" src="slide1.jpg" alt="QR Code Slide 3">
+        </div>
+    </div>
+
+    <!-- Navigation buttons -->
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+</div>
+
+<script>
+    let slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+        let i;
+        const slides = document.getElementsByClassName("mySlides");
+
+        if (n > slides.length) {
+            slideIndex = 1;
+        }
+
+        if (n < 1) {
+            slideIndex = slides.length;
+        }
+
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+
+        slides[slideIndex - 1].style.display = "block";
+    }
+</script>
+
+</body>
+</html>
